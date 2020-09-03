@@ -29,6 +29,7 @@ func (e Entry) String() string {
 
 	buff := bytes.NewBufferString("")
 
+	// TODO: Caching the template. This could possibly be unnecessarily time consuming.
 	t := template.Must(template.New("").Parse(Format))
 	_ = t.Execute(buff, data)
 	return buff.String() + "\n"

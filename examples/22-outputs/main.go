@@ -7,14 +7,18 @@ import (
 	"github.com/go-schild/logging"
 )
 
-func configOutputs() {
+func init() {
 	logging.Outputs = []logging.LoggerOut{
-		// Log all entries into stderr
+		// LoggerOut defines where the formatted log entry should be written.
+		// If this output will be used, depends on the log level in the configuration,
+		// the log level of the message and the log level of the  output.
 		{os.Stderr, logging.LogLevelAll},
 	}
 
 	logging.EntryOutputs = []logging.LoggerEntryOut{
-		// Log warnings and errors into stdout with a custom handler
+		// This output works like the output above, but it doesn't use a writer. It uses a function instead.
+		// This is more useful for more complex handling of log events, like storing it into a database.
+		// You get the raw entry data and can handle it like you wish.
 		{
 			LogLevel: logging.LogLevelWarning,
 			HandlerFunc: func(entry logging.Entry) {
@@ -31,8 +35,6 @@ func configOutputs() {
 }
 
 func main() {
-	configOutputs()
-
 	logging.Debug("this is a debug entry")
 	logging.Info("this is an info entry")
 	logging.Warning("this is a warning entry")
