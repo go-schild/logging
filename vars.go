@@ -17,7 +17,7 @@ var (
 	// TimeFormat defines how the time should be formatted.
 	// The time formatting of Go is used.
 	// It will be available in the Format string as {{.Time}}
-	TimeFormat = "2006-05-04 01:02:03"
+	TimeFormat = "2006-01-02 15:04:05"
 
 	// Format is a string used to format an entry into an string, which will be written to the Outputs.
 	Format = "[{{.Time}}] [{{.Level}}] {{.Message}}"
